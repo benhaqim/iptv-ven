@@ -1,0 +1,29 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+.DS_Store
+*.log
+_screenshots
+
+# Personal screenshots / scratch
+Screenshot*.png
+screencapture-*.png
+
+# Original design-handoff files (not used by the Next.js app)
+/app.jsx
+/blog.jsx
+/checkout.jsx
+/post.jsx
+/posts.js
+/shared.jsx
+/tweaks-panel.jsx
+/index.html
+/blog.html
+/post.html
+/checkout.html
+/styles.css
+/checkout.css
+# /README.md tracked
+/assets/

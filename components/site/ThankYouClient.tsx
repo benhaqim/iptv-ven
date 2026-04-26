@@ -1,0 +1,104 @@
+"use client";
+
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import {
+  Check, Headphones, Mail, Clock, ShieldCheck, Send, Home, ShoppingCart,
+} from "lucide-react";
+
+const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 32 32" width={size} height={size} fill="currentColor" aria-hidden>
+    <path d="M16.003 3.2C9.04 3.2 3.4 8.84 3.4 15.8c0 2.5.7 4.86 1.92 6.86L3.2 28.8l6.32-2.07a12.5 12.5 0 0 0 6.48 1.78h.01c6.96 0 12.6-5.64 12.6-12.6S22.97 3.2 16 3.2zm0 23.05a10.4 10.4 0 0 1-5.3-1.45l-.38-.22-3.74 1.22 1.24-3.65-.25-.39a10.4 10.4 0 0 1-1.6-5.55c0-5.74 4.66-10.4 10.4-10.4 2.78 0 5.39 1.08 7.36 3.05a10.34 10.34 0 0 1 3.05 7.36c0 5.74-4.67 10.4-10.4 10.4zm5.7-7.78c-.31-.16-1.84-.91-2.13-1.01-.29-.1-.5-.16-.71.16-.21.31-.81 1.01-.99 1.21-.18.21-.37.23-.68.08-.31-.16-1.32-.49-2.51-1.55-.93-.83-1.55-1.85-1.74-2.16-.18-.31-.02-.48.14-.63.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55l-.61-.01c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61s1.13 3.03 1.29 3.24c.16.21 2.23 3.4 5.4 4.77.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.84-.75 2.1-1.48.26-.73.26-1.35.18-1.48-.07-.13-.28-.21-.59-.36z" />
+  </svg>
+);
+
+const WHATSAPP_HREF = "https://wa.me/15555550100?text=Hi! I just placed an order on StreamlixIPTV.";
+const TELEGRAM_HREF = "https://t.me/streamlixiptv";
+const SUPPORT_EMAIL = "contact@streamlixiptv.com";
+
+const ITEMS = [
+  {
+    icon: Headphones,
+    title: "Our team will contact you",
+    body: "Our agents will reach out very quickly via WhatsApp, Email or Telegram to activate your subscription.",
+  },
+  {
+    icon: Mail,
+    title: "Check your emails",
+    body: "You'll receive an email from contact@streamlixiptv.com — please also check your spam / junk folder.",
+  },
+  {
+    icon: Clock,
+    title: "Fast activation",
+    body: "Activation usually takes only a few minutes. Stay reachable on your preferred contact channel.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Premium guarantee & 24/7 support",
+    body: "Enjoy premium quality with our 24/7 support team — we're here every day for any question.",
+  },
+];
+
+export default function ThankYouClient() {
+  const params = useSearchParams();
+  const orderId = params?.get("id");
+
+  return (
+    <main className="thank-you-page">
+      <div className="thank-you-bg" />
+      <div className="container">
+        <div className="thank-you-logo">
+          <ShoppingCart size={32} strokeWidth={2.2} />
+        </div>
+
+        <div className="thank-you-card reveal">
+          <div className="thank-you-check">
+            <Check size={32} strokeWidth={3} />
+          </div>
+          <h1>
+            ORDER <span className="accent">CONFIRMED</span>!
+          </h1>
+          <p className="thank-you-sub">Thank you for your trust</p>
+          {orderId && (
+            <p className="thank-you-order-id">
+              Order reference · <span>{orderId.slice(0, 8).toUpperCase()}</span>
+            </p>
+          )}
+
+          <div className="thank-you-list">
+            {ITEMS.map((it) => {
+              const I = it.icon;
+              return (
+                <div key={it.title} className="thank-you-item">
+                  <div className="thank-you-item-icon"><I size={18} /></div>
+                  <div>
+                    <h3>{it.title}</h3>
+                    <p>{it.body}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="thank-you-divider" />
+
+          <div className="thank-you-actions">
+            <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="thank-you-btn whatsapp">
+              <WhatsAppIcon size={18} /> Contact us on WhatsApp
+            </a>
+            <a href={TELEGRAM_HREF} target="_blank" rel="noopener noreferrer" className="thank-you-btn telegram">
+              <Send size={16} /> Contact us on Telegram
+            </a>
+            <Link href="/" className="thank-you-btn ghost">
+              <Home size={16} /> Return to homepage
+            </Link>
+          </div>
+        </div>
+
+        <p className="thank-you-foot">
+          Questions? Contact us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+        </p>
+      </div>
+    </main>
+  );
+}
