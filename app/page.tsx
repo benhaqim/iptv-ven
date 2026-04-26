@@ -1,9 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight, Play, Shield, Zap, Globe, Tv, Smartphone, Laptop, Tablet, Cast,
   Headphones, RefreshCcw, Award,
-
 } from "lucide-react";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: undefined,
+  path: "/",
+});
 import PlansGrid from "@/components/site/PlansGrid";
 import FAQ from "@/components/site/FAQ";
 import CTABanner from "@/components/site/CTABanner";

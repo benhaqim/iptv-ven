@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import { Check, X, ShieldCheck, CreditCard, Zap } from "lucide-react";
 import PlansGrid from "@/components/site/PlansGrid";
 import FAQ from "@/components/site/FAQ";
 import CTABanner from "@/components/site/CTABanner";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Pricing — Plans from €9.99",
+  description: "Trial, Starter, Half-Year and Pro IPTV plans starting at €9.99/month. 28,000+ live channels, 160,000+ movies, 4K & 8K UHD. 7-day money back. Cancel anytime.",
+  path: "/pricing",
+});
 
 const compareRows: { label: string; values: (string | boolean)[] }[] = [
   { label: "Live channels", values: ["28,000+", "28,000+", "28,000+", "28,000+"] },

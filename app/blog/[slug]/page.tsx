@@ -1,17 +1,29 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { POSTS, type PostBlock } from "@/lib/posts";
 import CTABanner from "@/components/site/CTABanner";
+import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = POSTS.find((p) => p.slug === params.slug);
-  if (!post) return { title: "Article — StreamlixIPTV" };
-  return { title: `${post.title} — StreamlixIPTV`, description: post.excerpt };
+  if (!post) return buildMetadata({ title: "Article", path: `/blog/${params.slug}` });
+  return buildMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.cover,
+    imageAlt: post.title,
+    type: "article",
+    publishedTime: new Date(post.date).toISOString(),
+    authors: [post.author],
+    tags: post.tags,
+  });
 }
 
 function renderBlock(b: PostBlock, i: number) {
@@ -28,8 +40,26 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   if (!post) notFound();
   const related = POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.cover}`,
+    datePublished: new Date(post.date).toISOString(),
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/og.png` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.slug}` },
+    keywords: post.tags.join(", "),
+  };
+
   return (
     <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <section className="single-hero">
         <div className="single-hero-bg">
           {/* eslint-disable-next-line @next/next/no-img-element */}

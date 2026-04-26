@@ -1,8 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Wrench, MessageCircle } from "lucide-react";
 import CTABanner from "@/components/site/CTABanner";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Installation Guide — StreamlixIPTV" };
+export const metadata: Metadata = buildMetadata({
+  title: "Installation Guide",
+  description: "Step-by-step Streamlix setup walkthroughs for every device — Smart TV, Fire Stick, Apple TV, iPhone, Android, Mac and PC.",
+  path: "/installation-guide",
+});
 
 export default function InstallationGuidePage() {
   return (

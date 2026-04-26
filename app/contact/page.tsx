@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { Mail, MessageCircle, Clock, Twitter, Instagram, Youtube, Facebook } from "lucide-react";
 import ContactForm from "@/components/site/ContactForm";
 import CTABanner from "@/components/site/CTABanner";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Contact — StreamlixIPTV" };
+export const metadata: Metadata = buildMetadata({
+  title: "Contact",
+  description: "Talk to the Streamlix team — pre-sales, setup help, partnerships. Live chat, email and social channels with replies in under a few hours.",
+  path: "/contact",
+});
 
 const contactInfo = [
   { icon: Mail, title: "Email us", body: "Our team replies within a few hours.", value: "support@streamlixiptv.com", href: "mailto:support@streamlixiptv.com" },

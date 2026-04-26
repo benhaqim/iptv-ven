@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { POSTS } from "@/lib/posts";
 import BlogList from "@/components/site/BlogList";
 import CTABanner from "@/components/site/CTABanner";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "The Stream Room — StreamlixIPTV Blog" };
+export const metadata: Metadata = buildMetadata({
+  title: "The Stream Room — Blog",
+  description: "Setup tutorials, match previews and deep dives on the world's biggest tournaments. From the Streamlix editors to your screen.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (
