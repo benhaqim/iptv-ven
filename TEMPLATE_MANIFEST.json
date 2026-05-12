@@ -1,64 +1,71 @@
 {
-  "name": "Streamlix — Premium IPTV",
-  "short_name": "Streamlix",
-  "description": "Premium IPTV with 28,000+ live channels and 160,000+ movies & series in 4K & 8K UHD. Football, F1, NBA, NFL, MMA — plus the FIFA World Cup 2026.",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#03050F",
-  "theme_color": "#03050F",
-  "lang": "en",
-  "dir": "ltr",
-  "categories": ["entertainment", "video", "sports"],
-  "icons": [
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/home-wide.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Streamlix home"
-    },
-    {
-      "src": "/screenshots/home-narrow.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Streamlix home (mobile)"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Plans",
-      "short_name": "Plans",
-      "url": "/#pricing",
-      "description": "View subscription plans"
-    },
-    {
-      "name": "Checkout",
-      "short_name": "Checkout",
-      "url": "/checkout",
-      "description": "Start checkout"
-    }
-  ]
+  "name": "Streamlix IPTV",
+  "slug": "streamlix-iptv",
+  "version": "0.1.0",
+  "description": "Streamlix is a premium IPTV reseller landing site (Next.js 14 + Supabase). Aggressive positioning with 28,000+ live channels, 160,000+ VOD, and the FIFA World Cup 2026 as anchor event.",
+  "category": "iptv",
+  "thumbnail": "thumbnail.png",
+
+  "brand_config": {
+    "schema_path": "config/brand.config.schema.json",
+    "default_path": "config/brand.config.ts"
+  },
+
+  "content_paths": {
+    "blog": "content/blog",
+    "legal": "content/legal",
+    "image_prompts": "content/image-prompts/manifest.json",
+    "design_tokens": "config/design-tokens.config.ts",
+    "animations": "config/animations.config.ts",
+    "seo": "lib/seo.ts",
+    "channels": "config/channels.config.ts"
+  },
+
+  "image_assets": {
+    "manifest_path": "content/image-prompts/manifest.json",
+    "output_directory": "public/images",
+    "required_image_ids": [
+      "hero-living-room-watching-football",
+      "hero-stadium-crowd-night",
+      "category-world-cup-2026",
+      "device-smart-tv",
+      "og-default"
+    ]
+  },
+
+  "agent_prompts": {
+    "BrandAgent": "prompts/brand-agent.md",
+    "ContentWriter": "prompts/content-writer.md",
+    "TranslatorAgent": "prompts/translator-agent.md",
+    "SEOAgent": "prompts/seo-agent.md",
+    "ImageDirector": "prompts/image-director.md",
+    "PolishAgent": "prompts/polish-agent.md",
+    "QualityReviewer": "prompts/quality-reviewer.md"
+  },
+
+  "verification": {
+    "commands": [
+      "npm install",
+      "npm run lint",
+      "npm run build"
+    ],
+    "must_succeed_before_deploy": true
+  },
+
+  "forbidden_words": {
+    "all_languages": ["official", "authorized", "licensed"],
+    "it": ["ufficiale", "autorizzato", "in licenza"],
+    "en": ["official", "authorized", "licensed"],
+    "es": ["oficial", "autorizado", "licenciado"],
+    "fr": ["officiel", "autorisé", "licencié"],
+    "de": ["offiziell", "autorisiert", "lizenziert"],
+    "pt": ["oficial", "autorizado", "licenciado"]
+  },
+
+  "supported_languages": ["en", "it", "es", "fr", "de", "pt"],
+
+  "min_versions": {
+    "node": ">=20.0.0",
+    "next": ">=14.0.0"
+  }
 }
