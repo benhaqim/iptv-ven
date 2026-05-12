@@ -1,0 +1,64 @@
+{
+  "name": "Streamlix — Premium IPTV",
+  "short_name": "Streamlix",
+  "description": "Premium IPTV with 28,000+ live channels and 160,000+ movies & series in 4K & 8K UHD. Football, F1, NBA, NFL, MMA — plus the FIFA World Cup 2026.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#03050F",
+  "theme_color": "#03050F",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["entertainment", "video", "sports"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Streamlix home"
+    },
+    {
+      "src": "/screenshots/home-narrow.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Streamlix home (mobile)"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Plans",
+      "short_name": "Plans",
+      "url": "/#pricing",
+      "description": "View subscription plans"
+    },
+    {
+      "name": "Checkout",
+      "short_name": "Checkout",
+      "url": "/checkout",
+      "description": "Start checkout"
+    }
+  ]
+}
